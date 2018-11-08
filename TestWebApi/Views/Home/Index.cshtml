@@ -1,0 +1,52 @@
+﻿<div id="tableBlock">
+    <table">
+        <tr>
+            <th>
+                @Html.ActionLink("Last Name", "Index", new { sortOrder = ViewBag.NameSortParm })
+            </th>
+            <th>
+                
+            </th>
+            <th>
+                @Html.ActionLink("Enrollment Date", "Index", new { sortOrder = ViewBag.DateSortParm })
+            </th>
+            <th></th>
+        </tr>
+        </table>
+</div>
+@section scripts
+{
+    <script type="text/javascript">
+        $(document).ready(function () {
+
+            GetAll();
+
+        });
+        // Получение всех книг по ajax-запросу
+        function GetAll() {
+
+            $("#tableBlock").css('display', 'inline-block');
+            $.ajax({
+                url: '/api/values',
+                type: 'GET',
+                dataType: 'json',
+                success: function (data) {
+                    WriteResponse(data);
+                },
+                error: function (x, y, z) {
+                    alert(x + '\n' + y + '\n' + z);
+                }
+            });
+        }
+        // вывод полученных данных на экран
+        function WriteResponse(buys) {
+            var strResult = "<table><th>ID</th><th>Name</th><th>Product</th>";
+            $.each(buys, function (index, buy) {
+                strResult += "<tr><td>" + buy.customer_name + "</td><td> " + buy.product_name + "</td><td> " + buy.customer_size;
+            });
+            strResult += "</table>";
+            $("#tableBlock").html(strResult);
+
+        }
+    </script>
+}
