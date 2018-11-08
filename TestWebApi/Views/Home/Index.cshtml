@@ -1,18 +1,9 @@
 ﻿<div id="tableBlock">
-    <table">
-        <tr>
-            <th>
-                @Html.ActionLink("Last Name", "Index", new { sortOrder = ViewBag.NameSortParm })
-            </th>
-            <th>
-                
-            </th>
-            <th>
-                @Html.ActionLink("Enrollment Date", "Index", new { sortOrder = ViewBag.DateSortParm })
-            </th>
-            <th></th>
-        </tr>
-        </table>
+    <table>
+
+    
+     
+    </table>
 </div>
 @section scripts
 {
@@ -22,7 +13,7 @@
             GetAll();
 
         });
-        // Получение всех книг по ajax-запросу
+
         function GetAll() {
 
             $("#tableBlock").css('display', 'inline-block');
@@ -38,7 +29,7 @@
                 }
             });
         }
-        // вывод полученных данных на экран
+
         function WriteResponse(buys) {
             var strResult = "<table><th>ID</th><th>Name</th><th>Product</th>";
             $.each(buys, function (index, buy) {
